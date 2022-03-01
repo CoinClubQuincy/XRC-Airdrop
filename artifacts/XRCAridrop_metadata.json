@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.12+commit.f00d7308"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Documents/GitHub/XRC-Airdrop/Airdrop.sol": "XRCAridrop"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Documents/GitHub/XRC-Airdrop/Airdrop.sol": {
+			"keccak256": "0x07d1a14b0be08c2b397f6c6abe7238c6294404a570fc449e341505a57643bd89",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8d9eebacd46c1eb2af411cd21fd898b828a5c3de36ac5d3e6bdba73fa482c522",
+				"dweb:/ipfs/Qmbvov8wHCpFnGr6p34oXtWiM3ewH7YeLdNuF2yHkygXS4"
+			]
+		}
+	},
+	"version": 1
+}
