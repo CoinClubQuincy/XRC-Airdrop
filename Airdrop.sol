@@ -4,6 +4,7 @@ pragma solidity ^0.8.10;
 contract Aridrop{
     address private owner;
     uint public airdropCount=0;
+    address XRC_Contract;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
     modifier isOwner() {
@@ -41,6 +42,12 @@ contract Aridrop{
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].ammount,userAirdrop[_userCount].exist);
     }
+    function Set_XRC_Contract(address _Contract) public isOwner returns(address){
+        XRC_Contract = _Contract;
+        return XRC_Contract;
+    }
+    function DeployAirDrop()public isOwner returns(bool){}
+
 }
 
 
