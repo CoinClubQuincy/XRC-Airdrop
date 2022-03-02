@@ -267,11 +267,11 @@
 	},
 	"sources": {
 		"Documents/GitHub/XRC-Airdrop/Airdrop.sol": {
-			"keccak256": "0x132e3d98a2c9a0914f7d63c5f0791903b5085fe4aef8ddd4ec509cacfbafc812",
+			"keccak256": "0x5aab680ba4c47696a502e36bdb7b7faae38ec120921663a5ff36d5f24cf10a49",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://890170b4457ad0bd8d8d5aeef1fcf664d718034516e6b5223aa2323fe1ec3126",
-				"dweb:/ipfs/QmQNpdqtkqkexDpD8MudkZ9fMhwQhw3Nv9icK6mxapk46J"
+				"bzz-raw://f48f9d6205a35ac51990df0475122ad0778e7ad760561f1cf0e2b7d674270c43",
+				"dweb:/ipfs/QmWpSHG5ESMsR8msvw6854UMM3mVhjs17zth95vN2hCUBF"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/XRC20.sol": {

@@ -10,8 +10,19 @@ contract Aridrop{
     bool AirDropStatus;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
+    // check owner of airdrop contract
     modifier isOwner() {
         require(msg.sender == owner, "Caller is not owner");
+        _;
+    }
+    //executes after airdrop
+    modifier preAirdrop{
+        require(AirDropStatus == false);
+        _;
+    }
+    //executes before airdrop
+    modifier postAirdrop{
+        require(AirDropStatus == true);
         _;
     }
     mapping(uint => AirDropDB) userAirdrop;
@@ -25,16 +36,16 @@ contract Aridrop{
         emit OwnerSet(address(0), owner);
     }
     //change owner
-    function changeOwner(address newOwner) public isOwner {
+    function changeOwner(address newOwner) public isOwner preAirdrop {
         emit OwnerSet(owner, newOwner);
         owner = newOwner;
     }
     //Set owner
-    function getOwner() external view returns (address) {
+    function getOwner() external view returns(address) {
         return owner;
     }
     //Add User to contract
-    function AddUser(address _User,uint _ammount)public isOwner returns(bool){
+    function AddUser(address _User,uint _ammount)public isOwner preAirdrop returns(bool){
         uint leftToBeAllocated = viewTokenInContract() - TotalAlocated;
         if(leftToBeAllocated >0 && _ammount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_ammount,true);
@@ -46,7 +57,7 @@ contract Aridrop{
         }
     }
     //Edit Airdrop users
-    function EditUser(uint _userCount,address _User,uint _ammount,bool _exist)public isOwner returns(bool){
+    function EditUser(uint _userCount,address _User,uint _ammount,bool _exist)public isOwner preAirdrop returns(bool){
         userAirdrop[_userCount] = AirDropDB(_User,_ammount,_exist);
         return true;
     }
@@ -55,18 +66,17 @@ contract Aridrop{
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].ammount,userAirdrop[_userCount].exist);
     }
     //Set contract
-    function Set_XRC_Contract(address _Contract) public isOwner returns(address){
+    function Set_XRC_Contract(address _Contract) public isOwner preAirdrop returns(address){
         XRC_Contract = _Contract;
         return XRC_Contract;
     }
     //Deploy Airdrop
-    function DeployAirDrop(bool _status)public isOwner returns(bool){
+    function DeployAirDrop(bool _status)public isOwner preAirdrop returns(bool){
         AirDropStatus = _status;
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
-    function RedeemAirdrop(uint _countID)public returns(uint){
-        require(AirDropStatus == true);
+    function RedeemAirdrop(uint _countID)public postAirdrop returns(uint){
         //if(userAirdrop[_userCount].User == msg.sender){}
     }
     //view Total totens to be airdropped
