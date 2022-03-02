@@ -54,7 +54,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_status",
+						"type": "bool"
+					}
+				],
 				"name": "DeployAirDrop",
 				"outputs": [
 					{
@@ -103,6 +109,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_countID",
+						"type": "uint256"
+					}
+				],
+				"name": "RedeemAirdrop",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_Contract",
 						"type": "address"
@@ -117,6 +142,19 @@
 					}
 				],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TotalAlocated",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -186,6 +224,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewTokenInContract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -216,11 +267,19 @@
 	},
 	"sources": {
 		"Documents/GitHub/XRC-Airdrop/Airdrop.sol": {
-			"keccak256": "0xb710b783150c7db148c9921c39629fa52ca32f832f8595ac32092c8fd33305be",
+			"keccak256": "0x132e3d98a2c9a0914f7d63c5f0791903b5085fe4aef8ddd4ec509cacfbafc812",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7c4b7d0e18fb06d02bdadb02594c1311b560af21439f4863ee981b4adb27ad32",
-				"dweb:/ipfs/QmRdgaTQtaZH5Csyuu42pCbQYkQ2GMBmbyhbr57dUZWRUf"
+				"bzz-raw://890170b4457ad0bd8d8d5aeef1fcf664d718034516e6b5223aa2323fe1ec3126",
+				"dweb:/ipfs/QmQNpdqtkqkexDpD8MudkZ9fMhwQhw3Nv9icK6mxapk46J"
+			]
+		},
+		"Documents/GitHub/XRC-Airdrop/XRC20.sol": {
+			"keccak256": "0xcd50a6557cd2cabeadf9f9ca27a96e67beab41fe8c29b74c06e2972cd5d0e587",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b8763112f2cae026e6b8c9f8448ae824143bb4a5edce8c341b8cb69f481cc187",
+				"dweb:/ipfs/QmQTjgpXNrgUrtdEzoupWoAphtkpmNgBvgM1qowQEsWWC2"
 			]
 		}
 	},

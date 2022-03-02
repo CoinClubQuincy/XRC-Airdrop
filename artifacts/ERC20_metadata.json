@@ -267,7 +267,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Documents/GitHub/XRC-Airdrop/Airdrop.sol": "ERC20"
+			"Documents/GitHub/XRC-Airdrop/ERC20.sol": "ERC20"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -281,12 +281,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Documents/GitHub/XRC-Airdrop/Airdrop.sol": {
-			"keccak256": "0xb710b783150c7db148c9921c39629fa52ca32f832f8595ac32092c8fd33305be",
+		"Documents/GitHub/XRC-Airdrop/ERC20.sol": {
+			"keccak256": "0xcd50a6557cd2cabeadf9f9ca27a96e67beab41fe8c29b74c06e2972cd5d0e587",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7c4b7d0e18fb06d02bdadb02594c1311b560af21439f4863ee981b4adb27ad32",
-				"dweb:/ipfs/QmRdgaTQtaZH5Csyuu42pCbQYkQ2GMBmbyhbr57dUZWRUf"
+				"bzz-raw://b8763112f2cae026e6b8c9f8448ae824143bb4a5edce8c341b8cb69f481cc187",
+				"dweb:/ipfs/QmQTjgpXNrgUrtdEzoupWoAphtkpmNgBvgM1qowQEsWWC2"
 			]
 		}
 	},
