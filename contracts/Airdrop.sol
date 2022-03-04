@@ -77,10 +77,14 @@ contract Aridrop{
     }
     //Users who were air dropped tokens can have them redeemed
     function RedeemAirdrop(uint _countID)public postAirdrop returns(uint){
-        //if(userAirdrop[_userCount].User == msg.sender){}
+        if(userAirdrop[_countID].User == msg.sender){
+            IERC20(XRC_Contract).transferFrom(address(this),msg.sender,userAirdrop[_countID].ammount);
+            userAirdrop[_countID].ammount = 0;
+            return true;
+        }
     }
     //view Total totens to be airdropped
-    function viewTokenInContract()public view isOwner returns(uint){
+    function viewBalanceInContract()public view isOwner returns(uint){
         uint tokensInContract = IERC20(XRC_Contract).balanceOf(address(this)); // this shows the balance of the XRC20 token in the Airdrop contract
         return tokensInContract;
     }

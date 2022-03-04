@@ -1,0 +1,287 @@
+{
+	"compiler": {
+		"version": "0.8.12+commit.f00d7308"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnerSet",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_User",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ammount",
+						"type": "uint256"
+					}
+				],
+				"name": "AddUser",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_status",
+						"type": "bool"
+					}
+				],
+				"name": "DeployAirDrop",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_userCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_User",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ammount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_exist",
+						"type": "bool"
+					}
+				],
+				"name": "EditUser",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_countID",
+						"type": "uint256"
+					}
+				],
+				"name": "RedeemAirdrop",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_Contract",
+						"type": "address"
+					}
+				],
+				"name": "Set_XRC_Contract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TotalAlocated",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_userCount",
+						"type": "uint256"
+					}
+				],
+				"name": "ViewUsers",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "airdropCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewTokenInContract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": "Aridrop"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
+			"keccak256": "0x7b468f0a6832d71d5c5540cf628a9bfdaca8dc8aa93cac2480dcc7e279655550",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ca1fdeb099c3f76679fbf7059ae40a15049a4a9d1122aa02f957b082dedf915d",
+				"dweb:/ipfs/QmbMD5YNhN4y7bGk36AbvovW6ghjMf9Dkf85wkieQsXq2h"
+			]
+		},
+		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {
+			"keccak256": "0xcd50a6557cd2cabeadf9f9ca27a96e67beab41fe8c29b74c06e2972cd5d0e587",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b8763112f2cae026e6b8c9f8448ae824143bb4a5edce8c341b8cb69f481cc187",
+				"dweb:/ipfs/QmQTjgpXNrgUrtdEzoupWoAphtkpmNgBvgM1qowQEsWWC2"
+			]
+		}
+	},
+	"version": 1
+}
