@@ -117,9 +117,9 @@
 				"name": "RedeemAirdrop",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "bool",
 						"name": "",
-						"type": "uint256"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -227,7 +227,20 @@
 			},
 			{
 				"inputs": [],
-				"name": "viewTokenInContract",
+				"name": "leftToBeAllocated",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewBalanceInContract",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -267,11 +280,11 @@
 	},
 	"sources": {
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0x7b468f0a6832d71d5c5540cf628a9bfdaca8dc8aa93cac2480dcc7e279655550",
+			"keccak256": "0xd1caad7e501ac6957ee432d6eb15d63f4361ba0d972f9d5bc85aac13af04b7fe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ca1fdeb099c3f76679fbf7059ae40a15049a4a9d1122aa02f957b082dedf915d",
-				"dweb:/ipfs/QmbMD5YNhN4y7bGk36AbvovW6ghjMf9Dkf85wkieQsXq2h"
+				"bzz-raw://7da3468a96ae55ad69d370bbc995f5837d7b82346195b2c79b2a5084df97887f",
+				"dweb:/ipfs/QmUdM8wQmifJE7kiVxdUtdCRgQAQXawrQN2ks5WQ8Ku8mJ"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

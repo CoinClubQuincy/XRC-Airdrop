@@ -8,6 +8,7 @@ contract Aridrop{
     address XRC_Contract;
     uint public TotalAlocated=0;
     bool AirDropStatus;
+    uint public leftToBeAllocated;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
     // check owner of airdrop contract
@@ -46,7 +47,7 @@ contract Aridrop{
     }
     //Add User to contract
     function AddUser(address _User,uint _ammount)public isOwner preAirdrop returns(bool){
-        uint leftToBeAllocated = viewTokenInContract() - TotalAlocated;
+        leftToBeAllocated = viewTokenInContract() - TotalAlocated;
         if(leftToBeAllocated >0 && _ammount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_ammount,true);
             airdropCount++;
@@ -76,7 +77,7 @@ contract Aridrop{
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
-    function RedeemAirdrop(uint _countID)public postAirdrop returns(uint){
+    function RedeemAirdrop(uint _countID)public postAirdrop returns(bool){
         if(userAirdrop[_countID].User == msg.sender){
             IERC20(XRC_Contract).transferFrom(address(this),msg.sender,userAirdrop[_countID].ammount);
             userAirdrop[_countID].ammount = 0;
