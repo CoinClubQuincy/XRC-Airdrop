@@ -47,7 +47,7 @@ contract Aridrop{
     }
     //Add User to contract
     function AddUser(address _User,uint _ammount)public isOwner preAirdrop returns(bool){
-        leftToBeAllocated = viewTokenInContract() - TotalAlocated;
+        leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
         if(leftToBeAllocated >0 && _ammount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_ammount,true);
             airdropCount++;
@@ -82,6 +82,8 @@ contract Aridrop{
             IERC20(XRC_Contract).transferFrom(address(this),msg.sender,userAirdrop[_countID].ammount);
             userAirdrop[_countID].ammount = 0;
             return true;
+        } else {
+            return false;
         }
     }
     //view Total totens to be airdropped
