@@ -217,11 +217,11 @@
 	},
 	"sources": {
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {
-			"keccak256": "0xcd50a6557cd2cabeadf9f9ca27a96e67beab41fe8c29b74c06e2972cd5d0e587",
+			"keccak256": "0x17e43c8c2960068642cbdabf75c4a898db55f6b4a9e7738012636597ad848843",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b8763112f2cae026e6b8c9f8448ae824143bb4a5edce8c341b8cb69f481cc187",
-				"dweb:/ipfs/QmQTjgpXNrgUrtdEzoupWoAphtkpmNgBvgM1qowQEsWWC2"
+				"bzz-raw://eaa541f0723b821ec4c83409dcde065467753abc452ea29c509b3dc55f19a595",
+				"dweb:/ipfs/QmZK1Zd1JYZz1MVy1oAiT9VF5mDymmWEae2qEFXt6mS2eD"
 			]
 		}
 	},

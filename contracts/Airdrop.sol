@@ -1,13 +1,14 @@
 pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
 import "./XRC20.sol";
+
 contract Aridrop{
     //contract variables
     address private owner;
     uint public airdropCount=0;
     address XRC_Contract;
     uint public TotalAlocated=0;
-    bool AirDropStatus;
+    bool public AirDropStatus;
     uint public leftToBeAllocated;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
@@ -18,14 +19,15 @@ contract Aridrop{
     }
     //executes after airdrop
     modifier preAirdrop{
-        require(AirDropStatus == false);
+        require(AirDropStatus == false, "Airdrop status must be false");
         _;
     }
     //executes before airdrop
     modifier postAirdrop{
-        require(AirDropStatus == true);
+        require(AirDropStatus == true,"Airdrop status must be true");
         _;
     }
+    //stuct mapping int
     mapping(uint => AirDropDB) userAirdrop;
     struct AirDropDB{
         address User;
@@ -41,7 +43,7 @@ contract Aridrop{
         emit OwnerSet(owner, newOwner);
         owner = newOwner;
     }
-    //Set owner
+    //get owner
     function getOwner() external view returns(address) {
         return owner;
     }

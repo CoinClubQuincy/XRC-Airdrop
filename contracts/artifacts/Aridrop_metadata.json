@@ -54,6 +54,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "AirDropStatus",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "bool",
@@ -279,20 +292,52 @@
 		"remappings": []
 	},
 	"sources": {
-		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0x9650fe5f19f3397c0a940aaeacba42629e1ec537edc57f3ef29f039c2938ed72",
+		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0x53a0bb51b8a505e04aaf065de27c0e31cadf38194f8a9a6ec92b7bcd3c5826e6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2e30026fd7ca2ad79afe277f6841c8d908e7c1a7d968c845fe9bf06e35fbb3c0",
-				"dweb:/ipfs/QmePdrNzoaP5B3HnV6zy7gWsZMcEnQB6yXtv55Pb6frYpL"
+				"bzz-raw://d7d7019db0d8c1256995eb44b2aabf1189120c0bd01efa653e0eabdbc8cf4742",
+				"dweb:/ipfs/QmZRiFEksts7Z2r1xnHb9Jqu4udHyTM6tQVTCyFosMXQAy"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc1452b054778f1926419196ef12ae200758a4ee728df69ae1cd13e5c16ca7df7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4cb252ec7657ba7a91be688cbd263090aa5379e504f488a62d06198e0d630322",
+				"dweb:/ipfs/QmW56fDiDirhWfWiKrycXE5UY6tTNtFrYx39ipnSs8mkYb"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x842c66d5965ed0bf77f274732c2a93a7e2223d53171ec9cccc473bde75104ead",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8cc9f9a6d9c1e2ca9cd191840c0e6017d22bf99d88b368137e43c67f63d17d1c",
+				"dweb:/ipfs/Qmd3vUSxY4fRi4AUFMkerjrMFEKRLGVJUGFmxazR1wnPXP"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x7736c187e6f1358c1ea9350a2a21aa8528dec1c2f43b374a9067465a3a51f5d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4fd625dca17657403af518cc6c8ab5c54c58898cf6e912ca2e1b0f3194ad0405",
+				"dweb:/ipfs/QmQVv7YeeKmaS11bg7YDTeeGDk6i7sV8LMMfohaLM4SiRu"
+			]
+		},
+		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
+			"keccak256": "0x2cdedc3526ec6115b1a6849e0146a81e1600f38ca8f73b7de8be5a2098092401",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7e8254c7c9e85807a309b7f352de74966cf83216da00aa6e6578c09a50fd900f",
+				"dweb:/ipfs/QmcutTYi4RpdVb6jdz2XQhx7X4fQN3V8SqEFc8gfJqcZEv"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {
-			"keccak256": "0xcd50a6557cd2cabeadf9f9ca27a96e67beab41fe8c29b74c06e2972cd5d0e587",
+			"keccak256": "0xf5f0631fbf2637516a6368d0beb4d875a9d8718745b3a2af820cb2e0372266e4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b8763112f2cae026e6b8c9f8448ae824143bb4a5edce8c341b8cb69f481cc187",
-				"dweb:/ipfs/QmQTjgpXNrgUrtdEzoupWoAphtkpmNgBvgM1qowQEsWWC2"
+				"bzz-raw://7a4f7a78ac34da143744a848372295a4b95b92bfd605eb1d680395787efb4146",
+				"dweb:/ipfs/QmSHxKWSrJgQgK8bp7dho7LqC24rs51z4FiipmotMsMfpT"
 			]
 		}
 	},
