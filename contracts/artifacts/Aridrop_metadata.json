@@ -331,11 +331,11 @@
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0x20a281b5fcee29b6ca1629c9f43f0ac9841303add6123c9b5f4c71cf81f83318",
+			"keccak256": "0xf85011c058ed7cc596b418bcfa33ae6b41b5dca7cb739b451c2efad50ccab6d7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b77862b0153976d53569b8a9e4ed39704b30b0c5da3b2e106fc8b3b2fc19200e",
-				"dweb:/ipfs/Qmb6zPuV5bcRrZyKMf5JZ3gaHdxTTysTuW9qVWeCjXY2TE"
+				"bzz-raw://8d32929514aefd7ada52535fa4ce5b15c5d8caf0083e68f1fc6258e5d142307c",
+				"dweb:/ipfs/QmcnY1Tm83w2wKpSoJHHFRxaNyb3CXt8PiAzRZbwwd4aXR"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

@@ -6,7 +6,7 @@ contract Aridrop{
     //contract variables
     address private owner;
     uint public airdropCount=0;
-    //address XRC_Contract;
+
     uint public TotalAlocated=0;
     bool public AirDropStatus;
     uint public leftToBeAllocated;
