@@ -11,7 +11,7 @@ contract Aridrop{
     bool public AirDropStatus;
     uint public leftToBeAllocated;
 
-    IERC20 private XRC_Contract;
+    IERC20 public XRC_Contract;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
     // check owner of airdrop contract
@@ -36,8 +36,7 @@ contract Aridrop{
         uint ammount;
         bool exist;
     }
-    constructor(IERC20 _contractToken) {
-        XRC_Contract = _contractToken;
+    constructor() {
         owner = msg.sender;
         emit OwnerSet(address(0), owner);
     }
@@ -56,7 +55,8 @@ contract Aridrop{
         if(leftToBeAllocated >0 && _ammount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_ammount,true);
             airdropCount++;
-            TotalAlocated = TotalAlocated + _ammount;            
+            TotalAlocated = TotalAlocated + _ammount;    
+            leftToBeAllocated = viewBalanceInContract() - TotalAlocated;        
             return true;
         } else {
             return false;
@@ -64,7 +64,10 @@ contract Aridrop{
     }
     //Edit Airdrop users
     function EditUser(uint _userCount,address _User,uint _ammount,bool _exist)public isOwner preAirdrop returns(bool){
+        //------ edit user math for calculating  
         userAirdrop[_userCount] = AirDropDB(_User,_ammount,_exist);
+
+
         return true;
     }
     //view accounts with pledged amounts
@@ -83,8 +86,9 @@ contract Aridrop{
     }
     //Users who were air dropped tokens can have them redeemed
     function RedeemAirdrop(uint _countID)public postAirdrop returns(bool){
+        //add continuous execution
         if(userAirdrop[_countID].User == msg.sender){
-            XRC_Contract.transferFrom(address(this),msg.sender,userAirdrop[_countID].ammount);
+            XRC_Contract.transfer(msg.sender,userAirdrop[_countID].ammount);
             userAirdrop[_countID].ammount = 0;
             return true;
         } else {
