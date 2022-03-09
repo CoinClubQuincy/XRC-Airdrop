@@ -63,7 +63,6 @@ contract Aridrop{
     }
     //Edit Airdrop users
     function RemoveUser(uint _userCount,bool _exist)public isOwner preAirdrop returns(string memory){
-        //------ edit user math for calculating  
         userAirdrop[_userCount].exist = _exist;
         if(_exist == false){
             TotalAlocated = TotalAlocated - userAirdrop[_userCount].ammount;
