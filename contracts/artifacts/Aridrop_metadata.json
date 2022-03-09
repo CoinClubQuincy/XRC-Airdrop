@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "_Contract",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -105,7 +111,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "i",
+						"type": "uint256"
+					}
+				],
 				"name": "RedeemAirdrop",
 				"outputs": [
 					{
@@ -322,11 +334,11 @@
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0x46ac5e70357ef80045596938958ddb93ed652aaa9e7eb81dca5871dcdc0745c1",
+			"keccak256": "0x9bd4e3661f1a1f3555ae5ec5553c1728e1f121a2b0b8806c9457a14af25cb4c2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7dcb7503c6ba2e6e6ec8ccefef23c273aa633c5553742ae365cd6ba32784e121",
-				"dweb:/ipfs/Qma2Ua3ynTD9wXPVWHSNGpjrBBfc8jfKccNDH4F7gZCodr"
+				"bzz-raw://d1f97110ec4d178e112f2d046b5cbe231e81004c14ad8c5f53e953b3f9a2d5fb",
+				"dweb:/ipfs/QmWNsanix37259fx8CNrswaZWLq5KeeFjH4ZJk8YEdk4f2"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

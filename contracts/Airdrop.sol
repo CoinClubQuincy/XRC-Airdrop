@@ -10,7 +10,6 @@ contract Aridrop{
     uint public TotalAlocated=0;
     bool public AirDropStatus;
     uint public leftToBeAllocated;
-    uint i =0; // for loop to launch airdrop
     IERC20 public XRC_Contract;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
@@ -36,7 +35,8 @@ contract Aridrop{
         uint ammount;
         bool exist;
     }
-    constructor() {
+    constructor(IERC20 _Contract) {
+        XRC_Contract = _Contract;
         owner = msg.sender;
         emit OwnerSet(address(0), owner);
     }
@@ -90,7 +90,8 @@ contract Aridrop{
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
-    function RedeemAirdrop()public postAirdrop returns(bool){
+    // i has to be 0 for a full querey
+    function RedeemAirdrop(uint i)public postAirdrop returns(bool){
         //add continuous execution for loop
         for(i;i>=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
@@ -98,9 +99,11 @@ contract Aridrop{
                 userAirdrop[i].ammount = 0;
                 i=0;
                 return true;
-            } else {
+            } else if(i>airdropCount){
+                return false;
+            }else {
                 i++;
-                RedeemAirdrop();
+                RedeemAirdrop(i);
             }
         }
     }
