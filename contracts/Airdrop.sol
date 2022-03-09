@@ -85,6 +85,8 @@ contract Aridrop{
     //Deploy Airdrop
     function DeployAirDrop(bool _status)public isOwner preAirdrop returns(bool){
         AirDropStatus = _status;
+        XRC_Contract.transfer(msg.sender,leftToBeAllocated);
+        leftToBeAllocated =0;
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
