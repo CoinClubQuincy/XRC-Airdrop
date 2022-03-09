@@ -6,13 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "contract IERC20",
-						"name": "_Contract",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -334,11 +328,11 @@
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0x9bd4e3661f1a1f3555ae5ec5553c1728e1f121a2b0b8806c9457a14af25cb4c2",
+			"keccak256": "0x6b963388f2b2ac181b932e860f052789491b99798dbf4a222c9d31393f330216",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d1f97110ec4d178e112f2d046b5cbe231e81004c14ad8c5f53e953b3f9a2d5fb",
-				"dweb:/ipfs/QmWNsanix37259fx8CNrswaZWLq5KeeFjH4ZJk8YEdk4f2"
+				"bzz-raw://56ce6d398a6573653b10aa64af60e13fb858f3b933d7b89073dabae2b36cf670",
+				"dweb:/ipfs/Qmf9huTKSasxwtYU1qmHHhZPGFfnPuDAd5BPGzvWuqggva"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

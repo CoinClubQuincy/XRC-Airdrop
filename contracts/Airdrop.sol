@@ -35,8 +35,7 @@ contract Aridrop{
         uint ammount;
         bool exist;
     }
-    constructor(IERC20 _Contract) {
-        XRC_Contract = _Contract;
+    constructor(){
         owner = msg.sender;
         emit OwnerSet(address(0), owner);
     }
@@ -79,7 +78,7 @@ contract Aridrop{
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].ammount,userAirdrop[_userCount].exist);
     }
-    //Set contract
+    //Set contract 
     function Change_XRC_Contract(IERC20 _Contract) public isOwner preAirdrop returns(bool){
         XRC_Contract = _Contract;
         return true;
@@ -93,19 +92,13 @@ contract Aridrop{
     // i has to be 0 for a full querey
     function RedeemAirdrop(uint i)public postAirdrop returns(bool){
         //add continuous execution for loop
-        for(i;i>=airdropCount;i++){
+        for(i;i<=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
                 XRC_Contract.transfer(msg.sender,userAirdrop[i].ammount);
-                userAirdrop[i].ammount = 0;
-                i=0;
-                return true;
-            } else if(i>airdropCount){
-                return false;
-            }else {
-                i++;
-                RedeemAirdrop(i);
+                return true;                
             }
         }
+        return false;
     }
     //view Total totens to be airdropped
     function viewBalanceInContract()public view isOwner returns(uint){
