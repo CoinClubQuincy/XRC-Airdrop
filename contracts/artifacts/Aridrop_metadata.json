@@ -105,29 +105,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_userCount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_User",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_ammount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "_exist",
-						"type": "bool"
-					}
-				],
-				"name": "EditUser",
+				"inputs": [],
+				"name": "RedeemAirdrop",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -142,16 +121,21 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_countID",
+						"name": "_userCount",
 						"type": "uint256"
-					}
-				],
-				"name": "RedeemAirdrop",
-				"outputs": [
+					},
 					{
 						"internalType": "bool",
-						"name": "",
+						"name": "_exist",
 						"type": "bool"
+					}
+				],
+				"name": "RemoveUser",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -338,11 +322,11 @@
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0xaba6e9809f8dd8f442cd6d467311b44ed304c7b4cb050f0f6660c865ad2d553b",
+			"keccak256": "0x46ac5e70357ef80045596938958ddb93ed652aaa9e7eb81dca5871dcdc0745c1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://db52b460e0b6b173d965c90ae7032eb84271dca16e5d1ea51cfffde2b92033fc",
-				"dweb:/ipfs/QmZWEhUjbNfQgyLPmjtTdN9SmJvMSX2xmUVyzjH5UbhE4G"
+				"bzz-raw://7dcb7503c6ba2e6e6ec8ccefef23c273aa633c5553742ae365cd6ba32784e121",
+				"dweb:/ipfs/Qma2Ua3ynTD9wXPVWHSNGpjrBBfc8jfKccNDH4F7gZCodr"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

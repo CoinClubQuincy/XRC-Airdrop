@@ -10,7 +10,7 @@ contract Aridrop{
     uint public TotalAlocated=0;
     bool public AirDropStatus;
     uint public leftToBeAllocated;
-
+    uint i =0; // for loop to launch airdrop
     IERC20 public XRC_Contract;
     
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
@@ -63,12 +63,17 @@ contract Aridrop{
         }
     }
     //Edit Airdrop users
-    function EditUser(uint _userCount,address _User,uint _ammount,bool _exist)public isOwner preAirdrop returns(bool){
+    function RemoveUser(uint _userCount,bool _exist)public isOwner preAirdrop returns(string memory){
         //------ edit user math for calculating  
-        userAirdrop[_userCount] = AirDropDB(_User,_ammount,_exist);
-
-
-        return true;
+        userAirdrop[_userCount].exist = _exist;
+        if(_exist == false){
+            TotalAlocated = TotalAlocated - userAirdrop[_userCount].ammount;
+            leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
+            userAirdrop[_userCount].ammount=0;
+            return "User removed";
+        } else{
+            return "User not removed";
+        }
     }
     //view accounts with pledged amounts
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
@@ -85,14 +90,18 @@ contract Aridrop{
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
-    function RedeemAirdrop(uint _countID)public postAirdrop returns(bool){
-        //add continuous execution
-        if(userAirdrop[_countID].User == msg.sender){
-            XRC_Contract.transfer(msg.sender,userAirdrop[_countID].ammount);
-            userAirdrop[_countID].ammount = 0;
-            return true;
-        } else {
-            return false;
+    function RedeemAirdrop()public postAirdrop returns(bool){
+        //add continuous execution for loop
+        for(i;i>=airdropCount;i++){
+            if(userAirdrop[i].User == msg.sender){
+                XRC_Contract.transfer(msg.sender,userAirdrop[i].ammount);
+                userAirdrop[i].ammount = 0;
+                i=0;
+                return true;
+            } else {
+                i++;
+                RedeemAirdrop();
+            }
         }
     }
     //view Total totens to be airdropped
