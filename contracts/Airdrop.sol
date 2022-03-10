@@ -2,7 +2,18 @@ pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
 import "./XRC20.sol";
 
-contract Aridrop{
+interface Aridrop_interface{
+    function changeOwner(address newOwner) external;
+    function DeployAirDrop(bool _status)external returns(bool);
+    function getOwner() external view returns(address);
+    function AddUser(address _User,uint _ammount)external returns(bool);
+    function RemoveUser(uint _userCount,bool _exist)external returns(string memory);
+    function ViewUsers(uint _userCount) external view returns(address,uint,bool);
+    function RedeemAirdrop(uint i)external returns(bool);
+    function viewBalanceInContract()external view returns(uint);
+}
+
+contract Aridrop is Aridrop_interface{
     //contract variables
     address private owner;
     uint public airdropCount=0;
