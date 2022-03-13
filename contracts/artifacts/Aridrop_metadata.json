@@ -69,25 +69,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "contract IERC20",
-						"name": "_Contract",
-						"type": "address"
-					}
-				],
-				"name": "Change_XRC_Contract",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "bool",
 						"name": "_status",
 						"type": "bool"
@@ -113,6 +94,25 @@
 					}
 				],
 				"name": "RedeemAirdrop",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "_Contract",
+						"type": "address"
+					}
+				],
+				"name": "Register_XRC_Contract",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -328,11 +328,11 @@
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/Airdrop.sol": {
-			"keccak256": "0xaeef4150c16423d5bbfb29e0b2c7f8deda65dfc94e6246c69d10c6775086a5bd",
+			"keccak256": "0x1d8172a72a820b4950c903ed8854227b1b8b14cbb9b799aad130a8af7420097b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9c185fc775065ef0012c70c0ea83381ced512f3c8d6df6699d32fa3b79ae7cc6",
-				"dweb:/ipfs/Qmdi8JydUsTE7MG8beLDaG8sjYFtXQfynFi8LcZAcAKH8g"
+				"bzz-raw://debd61a78a27f8e712050fc89eeefd4d62896bd9705122559e075cd1c3f25bc2",
+				"dweb:/ipfs/QmUN73hNnEN98TUiwAJdBmmdjbZfbK9oEgAP1K2jJHXSaF"
 			]
 		},
 		"Documents/GitHub/XRC-Airdrop/contracts/XRC20.sol": {

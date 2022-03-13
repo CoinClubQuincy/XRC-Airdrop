@@ -89,7 +89,7 @@ contract Aridrop is Aridrop_interface{
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].ammount,userAirdrop[_userCount].exist);
     }
     //Set contract 
-    function Change_XRC_Contract(IERC20 _Contract) public isOwner preAirdrop returns(bool){
+    function Register_XRC_Contract(IERC20 _Contract) public isOwner preAirdrop returns(bool){
         XRC_Contract = _Contract;
         return true;
     }
