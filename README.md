@@ -1,18 +1,17 @@
-# XRC-Airdrop
-This contract allows token creators to log and airdrop their token to new holders
+How to airdrop tokens on the XDC Network XRC-AirDrop 
+- #BuildItOnXDC
 
-In the crypto space it is becoming increasingly popular to airdrop tokens for new projects being created. This is done for a collection of reasons, some focus on decentralization and try to widend the maximum reach of possible holders, others want to reward early supporters of the project and continually issue rewards to projects, or maybe some shareholders who listed their stock on the blockchain just want a simple automated way to issue their token to the correct holders.
+In the crypto space, it is becoming increasingly popular to airdrop tokens for new projects. This is done for a collection of reasons. Some focus on decentralization and widening the maximum distribution of holders. Others want to reward early supporters of the project and continually issue rewards to holders. Sometimes shareholders who listed their stock on the blockchain simply want an easy automated way to issue their token to the correct holders. Whatever the reasoning, airdropping allows for newly created assets to be issued to many parties without a need for a custodian for issuance.
 
+I recently built a new AirDrop contract to give creators of new tokens as well as DAOs the ability to add a “redeem” button to their website and mobile applications as a native means to distribute tokens. While a handful of third-party apps offer to assist developers in airdropping their tokens, this code, native to the XDC Network, does so more simply. Users (simply) launch  this contract alongside their project before loading the appropriate amount to airdrop. It’s an easy way to deliver assets to digital wallets. Here are the steps:
 
-The general Idea of this contract is to allow for new projects & DAOs can add a redeem button to their website and mobile apps as a native means of distribution of their tokens currently there are a handful of third party applications Offer to assist developers airdrop their tokens but with this contract simply launching the contract alongside the main project and loading it with the appropriate amount to airdrop and developers on the XDC network can have an easy means of delivering their asses to their users 
-
-I built this new Airdrop contract to help Developers on the XDC network Drop their newly minted project tokens to their users with a few simple steps.
 
 Launch Token
 Launch Airdrop Contract
-Load UserData
+Load UserData into airdrop 
 Deploy Airdrop
 Users Redeem Airdrop
+
 
 ![XRC Airdrop (1)](https://user-images.githubusercontent.com/16103963/157558351-f95a71ea-fa8d-49c5-9988-5e9f7fcead84.png)
 
