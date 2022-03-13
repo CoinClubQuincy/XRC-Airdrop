@@ -1,7 +1,7 @@
 pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
 import "./XRC20.sol";
-
+//interface for external contracts to execute
 interface Aridrop_interface{
     function changeOwner(address newOwner) external;
     function DeployAirDrop(bool _status)external returns(bool);
