@@ -2,18 +2,18 @@ pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
 import "./XRC20.sol";
 //interface for external contracts to execute
-interface Aridrop_interface{
+interface Airdrop_interface{
     function changeOwner(address newOwner) external;
     function DeployAirDrop(bool _status)external returns(bool);
     function getOwner() external view returns(address);
-    function AddUser(address _User,uint _ammount)external returns(bool);
+    function AddUser(address _User,uint _amount)external returns(bool);
     function RemoveUser(uint _userCount,bool _exist)external returns(string memory);
     function ViewUsers(uint _userCount) external view returns(address,uint,bool);
     function RedeemAirdrop(uint i)external returns(bool);
     function viewBalanceInContract()external view returns(uint);
 }
 
-contract Aridrop is Aridrop_interface{
+contract Airdrop is Airdrop_interface{
     //contract variables
     address private owner;
     uint public airdropCount=0;
@@ -39,11 +39,11 @@ contract Aridrop is Aridrop_interface{
         require(AirDropStatus == true,"Airdrop status must be true");
         _;
     }
-    //stuct mapping int
+    //struct mapping int
     mapping(uint => AirDropDB) userAirdrop;
     struct AirDropDB{
         address User;
-        uint ammount;
+        uint amount;
         bool exist;
     }
     constructor(){
@@ -60,12 +60,12 @@ contract Aridrop is Aridrop_interface{
         return owner;
     }
     //Add User to contract
-    function AddUser(address _User,uint _ammount)public isOwner preAirdrop returns(bool){
+    function AddUser(address _User,uint _amount)public isOwner preAirdrop returns(bool){
         leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
-        if(leftToBeAllocated >0 && _ammount <= leftToBeAllocated){
-            userAirdrop[airdropCount] = AirDropDB(_User,_ammount,true);
+        if(leftToBeAllocated >0 && _amount <= leftToBeAllocated){
+            userAirdrop[airdropCount] = AirDropDB(_User,_amount,true);
             airdropCount++;
-            TotalAlocated = TotalAlocated + _ammount;    
+            TotalAlocated = TotalAlocated + _amount;    
             leftToBeAllocated = viewBalanceInContract() - TotalAlocated;        
             return true;
         } else {
@@ -76,9 +76,9 @@ contract Aridrop is Aridrop_interface{
     function RemoveUser(uint _userCount,bool _exist)public isOwner preAirdrop returns(string memory){
         userAirdrop[_userCount].exist = _exist;
         if(_exist == false){
-            TotalAlocated = TotalAlocated - userAirdrop[_userCount].ammount;
+            TotalAlocated = TotalAlocated - userAirdrop[_userCount].amount;
             leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
-            userAirdrop[_userCount].ammount=0;
+            userAirdrop[_userCount].amount=0;
             return "User removed";
         } else{
             return "User not removed";
@@ -86,7 +86,7 @@ contract Aridrop is Aridrop_interface{
     }
     //view accounts with pledged amounts
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
-        return (userAirdrop[_userCount].User,userAirdrop[_userCount].ammount,userAirdrop[_userCount].exist);
+        return (userAirdrop[_userCount].User,userAirdrop[_userCount].amount,userAirdrop[_userCount].exist);
     }
     //Set contract 
     function Register_XRC_Contract(IERC20 _Contract) public isOwner preAirdrop returns(bool){
@@ -101,12 +101,12 @@ contract Aridrop is Aridrop_interface{
         return AirDropStatus;
     }
     //Users who were air dropped tokens can have them redeemed
-    // i has to be 0 for a full querey
+    // i has to be 0 for a full query
     function RedeemAirdrop(uint i)public postAirdrop returns(bool){
         //add continuous execution for loop
         for(i;i<=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
-                XRC_Contract.transfer(msg.sender,userAirdrop[i].ammount);
+                XRC_Contract.transfer(owner,userAirdrop[i].amount);
                 return true;                
             }
         }
