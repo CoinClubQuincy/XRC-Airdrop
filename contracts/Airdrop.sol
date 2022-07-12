@@ -97,7 +97,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
         //add continuous execution for loop
         for(i;i<=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
-                send = userAirdrop[i].amount;
+                uint send = userAirdrop[i].amount;
                 userAirdrop[i].amount =0;
                 XRC_Contract.transfer(msg.sender,send);
                 return true;                
