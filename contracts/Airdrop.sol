@@ -14,17 +14,16 @@ interface Airdrop_interface{
 
 contract Airdrop is ERC1155,Airdrop_interface{
     //contract variables
-    address private owner;
     uint public airdropCount=0;
     uint256 public constant airdropKey = 0;
 
     uint public TotalAlocated=0;
-    bool public AirDropStatus;
+    bool public AirDropStatus = false;
     uint public leftToBeAllocated;
     IERC20 public XRC_Contract;
     
-    event OwnerSet(address indexed oldOwner, address indexed newOwner);
-    // check owner of airdrop contract
+    event OwnerSet(address indexed Owner);
+    // check _owner of airdrop contract
     modifier isOwner() {
         require(balanceOf(msg.sender,airdropKey) == 1, "Caller is not owner");
         _;
@@ -47,9 +46,8 @@ contract Airdrop is ERC1155,Airdrop_interface{
         bool exist;
     }
     constructor(string memory _URI) ERC1155(_URI){
-        owner = msg.sender;
         _mint(msg.sender, airdropKey, 1, "");
-        emit OwnerSet(address(0), owner);
+        emit OwnerSet(msg.sender);
     }
 
     //Add User to contract
@@ -99,7 +97,9 @@ contract Airdrop is ERC1155,Airdrop_interface{
         //add continuous execution for loop
         for(i;i<=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
-                XRC_Contract.transfer(owner,userAirdrop[i].amount);
+                send = userAirdrop[i].amount;
+                userAirdrop[i].amount =0;
+                XRC_Contract.transfer(msg.sender,send);
                 return true;                
             }
         }
