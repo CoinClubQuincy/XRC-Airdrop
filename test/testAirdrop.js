@@ -25,7 +25,7 @@ contract(Airdrop, (accounts) => {
 
         //const viewUser1 =  await contract.ViewUsers(0);
 
-        console.log(user1);
+        //console.log(user1);
         assert(await contract.address !== '');
     })
     it("check Users", async() =>  {
