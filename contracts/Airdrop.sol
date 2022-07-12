@@ -22,7 +22,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
     uint public leftToBeAllocated;
     IERC20 public XRC_Contract;
     
-    event OwnerSet(address indexed Owner);
+    event OwnerSet(address indexed _Owner, address _tokenContract);
     // check _owner of airdrop contract
     modifier isOwner{
         require(balanceOf(msg.sender,airdropKey) == 1, "Caller is not owner");
@@ -48,7 +48,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
     constructor(string memory _URI,address XRC_Token_Address) ERC1155(_URI){
         _mint(msg.sender, airdropKey, 1, "");
         XRC_Contract = IERC20(XRC_Token_Address);
-        emit OwnerSet(msg.sender);
+        emit OwnerSet(msg.sender,address(XRC_Contract));
     }
 
     //Add User to contract
