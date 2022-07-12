@@ -1,11 +1,10 @@
 pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "./XRC20.sol";
 //interface for external contracts to execute
 interface Airdrop_interface{
-    function changeOwner(address newOwner) external;
     function DeployAirDrop(bool _status)external returns(bool);
-    function getOwner() external view returns(address);
     function AddUser(address _User,uint _amount)external returns(bool);
     function RemoveUser(uint _userCount,bool _exist)external returns(string memory);
     function ViewUsers(uint _userCount) external view returns(address,uint,bool);
@@ -13,10 +12,11 @@ interface Airdrop_interface{
     function viewBalanceInContract()external view returns(uint);
 }
 
-contract Airdrop is Airdrop_interface{
+contract Airdrop is ERC1155,Airdrop_interface{
     //contract variables
     address private owner;
     uint public airdropCount=0;
+    uint256 public constant airdropKey = 0;
 
     uint public TotalAlocated=0;
     bool public AirDropStatus;
@@ -26,7 +26,7 @@ contract Airdrop is Airdrop_interface{
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
     // check owner of airdrop contract
     modifier isOwner() {
-        require(msg.sender == owner, "Caller is not owner");
+        require(balanceOf(msg.sender,airdropKey) == 1, "Caller is not owner");
         _;
     }
     //executes after airdrop
@@ -46,19 +46,12 @@ contract Airdrop is Airdrop_interface{
         uint amount;
         bool exist;
     }
-    constructor(){
+    constructor(string memory _URI) ERC1155(_URI){
         owner = msg.sender;
+        _mint(msg.sender, airdropKey, 1, "");
         emit OwnerSet(address(0), owner);
     }
-    //change owner
-    function changeOwner(address newOwner) public isOwner preAirdrop {
-        emit OwnerSet(owner, newOwner);
-        owner = newOwner;
-    }
-    //get owner
-    function getOwner() external view returns(address) {
-        return owner;
-    }
+
     //Add User to contract
     function AddUser(address _User,uint _amount)public isOwner preAirdrop returns(bool){
         leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
@@ -112,7 +105,7 @@ contract Airdrop is Airdrop_interface{
         }
         return false;
     }
-    //view Total totens to be airdropped
+    //view Total tokens to be airdropped
     function viewBalanceInContract()public view isOwner returns(uint){
         uint tokensInContract = XRC_Contract.balanceOf(address(this)); // this shows the balance of the XRC20 token in the Airdrop contract
         return tokensInContract;
