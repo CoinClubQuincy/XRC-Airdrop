@@ -24,7 +24,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
     
     event OwnerSet(address indexed Owner);
     // check _owner of airdrop contract
-    modifier isOwner() {
+    modifier isOwner{
         require(balanceOf(msg.sender,airdropKey) == 1, "Caller is not owner");
         _;
     }
@@ -45,8 +45,9 @@ contract Airdrop is ERC1155,Airdrop_interface{
         uint amount;
         bool exist;
     }
-    constructor(string memory _URI) ERC1155(_URI){
+    constructor(string memory _URI,address XRC_Token_Address) ERC1155(_URI){
         _mint(msg.sender, airdropKey, 1, "");
+        XRC_Contract = IERC20(XRC_Token_Address);
         emit OwnerSet(msg.sender);
     }
 
@@ -56,8 +57,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
         if(leftToBeAllocated >0 && _amount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_amount,true);
             airdropCount++;
-            TotalAlocated = TotalAlocated + _amount;    
-            leftToBeAllocated = viewBalanceInContract() - TotalAlocated;        
+            TotalAlocated = TotalAlocated + _amount;         
             return true;
         } else {
             return false;
@@ -79,11 +79,6 @@ contract Airdrop is ERC1155,Airdrop_interface{
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].amount,userAirdrop[_userCount].exist);
     }
-    //Set contract 
-    function Register_XRC_Contract(IERC20 _Contract) public isOwner preAirdrop returns(bool){
-        XRC_Contract = _Contract;
-        return true;
-    }
     //Deploy Airdrop
     function DeployAirDrop(bool _status)public isOwner preAirdrop returns(bool){
         AirDropStatus = _status;
@@ -97,6 +92,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
         //add continuous execution for loop
         for(i;i<=airdropCount;i++){
             if(userAirdrop[i].User == msg.sender){
+                //make sure reentracy isnt possible
                 uint send = userAirdrop[i].amount;
                 userAirdrop[i].amount =0;
                 XRC_Contract.transfer(msg.sender,send);
