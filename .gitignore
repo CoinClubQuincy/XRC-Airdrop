@@ -1,0 +1,5 @@
+# Foundry
+/lib
+/out
+/cache_forge
+.DS_Store

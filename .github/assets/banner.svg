@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-label="XRC-Airdrop: Run your own token airdrop with a redeem button">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071426"/><stop offset="1" stop-color="#0c2d57"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity=".035"/></pattern>
+  </defs>
+  <rect width="1280" height="360" rx="16" fill="url(#bg)"/>
+  <rect width="1280" height="360" rx="16" fill="url(#grid)"/>
+  <rect x="64" y="52" width="72" height="5" rx="2.5" fill="url(#accent)"/>
+  <text x="64" y="124" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" font-size="66" font-weight="750" fill="#f8fafc">XRC-Airdrop</text>
+  <text x="64" y="174" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" font-size="29" font-weight="500" fill="#93c5fd">Run your own token airdrop with a redeem button</text>
+  <rect x="64" y="222" width="167" height="50" rx="10" fill="#ffffff" fill-opacity=".06" stroke="#60a5fa" stroke-opacity=".45"/>
+  <text x="147.5" y="254" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" fill="#e2e8f0">load tokens</text>
+  <path d="M238 247H256" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/><path d="M250 241l7 6-7 6" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="263" y="222" width="144" height="50" rx="10" fill="#ffffff" fill-opacity=".06" stroke="#60a5fa" stroke-opacity=".45"/>
+  <text x="335.0" y="254" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" fill="#e2e8f0">AddUser()</text>
+  <path d="M414 247H432" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/><path d="M426 241l7 6-7 6" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="439" y="222" width="214" height="50" rx="10" fill="#ffffff" fill-opacity=".06" stroke="#60a5fa" stroke-opacity=".45"/>
+  <text x="546.0" y="254" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" fill="#e2e8f0">DeployAirDrop()</text>
+  <path d="M660 247H678" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/><path d="M672 241l7 6-7 6" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="685" y="222" width="214" height="50" rx="10" fill="#ffffff" fill-opacity=".06" stroke="#60a5fa" stroke-opacity=".45"/>
+  <text x="792.0" y="254" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" fill="#e2e8f0">RedeemAirdrop()</text>
+  <text x="64" y="318" font-family="ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" font-size="19" fill="#94a3b8">Read the known issue before deploying. Not audited.</text>
+</svg>
