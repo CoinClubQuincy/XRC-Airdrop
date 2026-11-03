@@ -3,3 +3,7 @@
 /out
 /cache_forge
 .DS_Store
+/artifacts
+/build
+/contracts/artifacts
+/contracts/build

@@ -1,6 +1,7 @@
 pragma solidity ^0.8.10;
 // SPDX-License-Identifier: MIT
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./XRC20.sol";
 //interface for external contracts to execute
 interface Airdrop_interface{
@@ -13,6 +14,8 @@ interface Airdrop_interface{
 }
 
 contract Airdrop is ERC1155,Airdrop_interface{
+    using SafeERC20 for IERC20;
+
     //contract variables
     uint public airdropCount=0;
     uint256 public constant airdropKey = 0;
@@ -46,6 +49,7 @@ contract Airdrop is ERC1155,Airdrop_interface{
         bool exist;
     }
     constructor(string memory _URI,address XRC_Token_Address) ERC1155(_URI){
+        require(XRC_Token_Address != address(0), "Token address is required");
         _mint(msg.sender, airdropKey, 1, "");
         XRC_Contract = IERC20(XRC_Token_Address);
         emit OwnerSet(msg.sender,address(XRC_Contract));
@@ -53,11 +57,14 @@ contract Airdrop is ERC1155,Airdrop_interface{
 
     //Add User to contract
     function AddUser(address _User,uint _amount)public isOwner preAirdrop returns(bool){
+        require(_User != address(0), "User address is required");
+        require(_amount > 0, "Amount is required");
         leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
-        if(leftToBeAllocated >0 && _amount <= leftToBeAllocated){
+        if(_amount <= leftToBeAllocated){
             userAirdrop[airdropCount] = AirDropDB(_User,_amount,true);
             airdropCount++;
-            TotalAlocated = TotalAlocated + _amount;         
+            TotalAlocated = TotalAlocated + _amount;
+            leftToBeAllocated = leftToBeAllocated - _amount;
             return true;
         } else {
             return false;
@@ -65,8 +72,9 @@ contract Airdrop is ERC1155,Airdrop_interface{
     }
     //Edit Airdrop users
     function RemoveUser(uint _userCount,bool _exist)public isOwner preAirdrop returns(string memory){
-        userAirdrop[_userCount].exist = _exist;
+        require(_userCount < airdropCount, "User does not exist");
         if(_exist == false){
+            userAirdrop[_userCount].exist = false;
             TotalAlocated = TotalAlocated - userAirdrop[_userCount].amount;
             leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
             userAirdrop[_userCount].amount=0;
@@ -79,27 +87,35 @@ contract Airdrop is ERC1155,Airdrop_interface{
     function ViewUsers(uint _userCount) public view returns(address,uint,bool){
         return (userAirdrop[_userCount].User,userAirdrop[_userCount].amount,userAirdrop[_userCount].exist);
     }
-    //Deploy Airdrop
+    //Deploy Airdrop: opens redemption and returns only the unallocated tokens to the owner.
+    //Passing false does nothing, so the owner can keep editing the list.
     function DeployAirDrop(bool _status)public isOwner preAirdrop returns(bool){
-        AirDropStatus = _status;
-        XRC_Contract.transfer(msg.sender,leftToBeAllocated);
+        if(_status == false){
+            return false;
+        }
+        AirDropStatus = true;
+        uint remainder = viewBalanceInContract() - TotalAlocated;
         leftToBeAllocated =0;
+        if(remainder > 0){
+            XRC_Contract.safeTransfer(msg.sender,remainder);
+        }
         return AirDropStatus;
     }
-    //Users who were air dropped tokens can have them redeemed
-    // i has to be 0 for a full query
+    //Users who were air dropped tokens can have them redeemed.
+    //Pays every entry the caller has from index i onwards, so use 0 for a full query.
     function RedeemAirdrop(uint i)public postAirdrop returns(bool){
-        //add continuous execution for loop
-        for(i;i<=airdropCount;i++){
-            if(userAirdrop[i].User == msg.sender){
-                //make sure reentracy isnt possible
-                uint send = userAirdrop[i].amount;
+        uint send = 0;
+        for(i;i<airdropCount;i++){
+            if(userAirdrop[i].User == msg.sender && userAirdrop[i].amount > 0){
+                send = send + userAirdrop[i].amount;
                 userAirdrop[i].amount =0;
-                XRC_Contract.transfer(msg.sender,send);
-                return true;                
             }
         }
-        return false;
+        if(send == 0){
+            return false;
+        }
+        XRC_Contract.safeTransfer(msg.sender,send);
+        return true;
     }
     //view Total tokens to be airdropped
     function viewBalanceInContract()public view isOwner returns(uint){

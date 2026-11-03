@@ -14,7 +14,7 @@
 XRC-Airdrop lets a project distribute its own token without a third-party service. You load tokens into the contract, list who gets what, open the airdrop, and recipients claim from a button on your site.
 
 > [!CAUTION]
-> Deploying the airdrop in the normal order sends the recipients' tokens back to the owner. Use the [workaround](#known-issues) below. This contract has not been audited.
+> This contract has not been audited and has not run on a real network. Tokens nobody claims stay in the contract for good. See [Known issues](#known-issues).
 
 ## How it works
 
@@ -34,9 +34,10 @@ flowchart LR
 2. Deploy `Airdrop` with a metadata URI and the token address. The deployer receives the owner key.
 3. Transfer the airdrop amount to the contract.
 4. Call `AddUser(address, amount)` for each recipient.
-5. Refresh the remainder, as shown in [Known issues](#known-issues).
-6. Call `DeployAirDrop(true)`. Unallocated tokens return to the owner.
-7. Recipients call `RedeemAirdrop(0)`.
+5. Call `DeployAirDrop(true)`. Unallocated tokens return to the owner and allocated tokens stay for the recipients.
+6. Recipients call `RedeemAirdrop(0)`. An address listed more than once receives all of its entries.
+
+`DeployAirDrop(false)` changes nothing, so the owner can keep editing the list. `RemoveUser(index, false)` takes someone off the list before deployment.
 
 ## Try it
 
@@ -48,7 +49,7 @@ git clone --depth 1 -b v1.9.7 https://github.com/foundry-rs/forge-std lib/forge-
 forge test
 ```
 
-You need [Foundry](https://getfoundry.sh). Tests named `test_KnownIssue_*` pass because they pin a defect, so a passing run does not mean the defect is gone.
+You need [Foundry](https://getfoundry.sh).
 
 To try it on a network, use the Apothem testnet:
 
@@ -64,29 +65,39 @@ forge create contracts/Airdrop.sol:Airdrop --rpc-url https://rpc.apothem.network
 
 ## What is tested
 
-[`test/foundry/Airdrop.t.sol`](test/foundry/Airdrop.t.sol) has 6 tests and runs in CI on every push.
+[`test/foundry/Airdrop.t.sol`](test/foundry/Airdrop.t.sol) has 17 tests, including one fuzz test, and runs in CI on every push.
 
 | Tested | Not tested |
 | --- | --- |
-| Owner-only access | A real network, testnet or mainnet |
+| Owner-only access, and rejecting a zero address or zero amount | A real network, testnet or mainnet |
 | Allocations being capped at the contract balance | An independent security audit |
-| Redeeming being blocked before deployment | The older `test/testAirdrop.js`, which was not run |
-| A full airdrop using the workaround | |
+| Deploying returning only the unallocated tokens | Tokens that charge a fee on transfer |
+| `DeployAirDrop(false)` doing nothing, and deploying only once | |
+| Redeeming being blocked before deployment, and paying only once | |
+| Several entries for one address, removed entries and empty claims | |
+| `RemoveUser` refusing an index out of range | |
+| Fuzz: claims plus the returned remainder equal the tokens loaded | |
+
+## Changes from earlier versions
+
+Contracts already deployed are unaffected and keep the old behaviour.
+
+- `DeployAirDrop(true)` now works out the remainder when it runs, so it can no longer send allocated tokens back to the owner. The old `RemoveUser` workaround is no longer needed.
+- `DeployAirDrop(false)` now does nothing. It used to send tokens anyway.
+- `RedeemAirdrop` now pays every entry the caller has from the given index onwards, and returns false when there is nothing to pay.
+- `RemoveUser` refuses an index out of range, and `RemoveUser(index, true)` no longer changes anything.
+- `AddUser` refuses a zero address and a zero amount. The constructor refuses a zero token address.
+- Token transfers use `SafeERC20`, so tokens that do not return a value also work.
+- The older Truffle test and tracked build output were removed. Foundry is the supported test path.
 
 ## Known issues
 
-| Issue | Effect | Test |
-| --- | --- | --- |
-| The remainder is stale when deploying | `AddUser` works out the remainder before adding the new amount, so `DeployAirDrop` can send allocated tokens back to the owner and redeeming then fails | `test_KnownIssue_DeployReturnsAllocatedTokensToTheOwner` |
-| `DeployAirDrop(false)` still sends tokens | Tokens leave the contract even though the airdrop stays closed | `test_KnownIssue_DeployWithFalseStillSendsTokens` |
-
-**Workaround:** after the last `AddUser`, call `RemoveUser` with an index that was never used and `false`. This recalculates the remainder without removing anyone. The full flow is shown in `test_WorkaroundRefreshTheRemainderBeforeDeploying`.
-
-```solidity
-airdrop.AddUser(recipient, 100);
-airdrop.RemoveUser(type(uint).max, false); // refreshes the remainder
-airdrop.DeployAirDrop(true);
-```
+| Issue | Effect |
+| --- | --- |
+| Unclaimed tokens stay locked | After deployment nobody can take back tokens that recipients never claim. Allocate only what you expect to be claimed |
+| Tokens sent after deployment are stuck | The contract only returns the remainder once, when it is deployed |
+| Fee-on-transfer tokens | The contract assumes it receives and sends the full amount. If a token takes a fee, the last claims can fail |
+| Long lists cost more gas | `RedeemAirdrop` scans the list from the given index to the end |
 
 <details>
 <summary><strong>More XDC projects</strong></summary>
