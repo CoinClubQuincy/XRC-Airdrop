@@ -60,15 +60,12 @@ contract Airdrop is ERC1155,Airdrop_interface{
         require(_User != address(0), "User address is required");
         require(_amount > 0, "Amount is required");
         leftToBeAllocated = viewBalanceInContract() - TotalAlocated;
-        if(_amount <= leftToBeAllocated){
-            userAirdrop[airdropCount] = AirDropDB(_User,_amount,true);
-            airdropCount++;
-            TotalAlocated = TotalAlocated + _amount;
-            leftToBeAllocated = leftToBeAllocated - _amount;
-            return true;
-        } else {
-            return false;
-        }
+        require(_amount <= leftToBeAllocated, "Amount is more than is left to allocate");
+        userAirdrop[airdropCount] = AirDropDB(_User,_amount,true);
+        airdropCount++;
+        TotalAlocated = TotalAlocated + _amount;
+        leftToBeAllocated = leftToBeAllocated - _amount;
+        return true;
     }
     //Edit Airdrop users
     function RemoveUser(uint _userCount,bool _exist)public isOwner preAirdrop returns(string memory){

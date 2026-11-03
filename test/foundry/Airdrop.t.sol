@@ -42,7 +42,8 @@ contract AirdropTest is Test {
     function test_AllocationCannotExceedTheContractBalance() public {
         vm.startPrank(alice);
         assertTrue(drop.AddUser(bob, 600));
-        assertFalse(drop.AddUser(carol, 401));
+        vm.expectRevert("Amount is more than is left to allocate");
+        drop.AddUser(carol, 401);
         assertTrue(drop.AddUser(carol, 400));
         vm.stopPrank();
         assertEq(drop.TotalAlocated(), 1000);

@@ -86,6 +86,7 @@ Contracts already deployed are unaffected and keep the old behaviour.
 - `DeployAirDrop(false)` now does nothing. It used to send tokens anyway.
 - `RedeemAirdrop` now pays every entry the caller has from the given index onwards, and returns false when there is nothing to pay.
 - `RemoveUser` refuses an index out of range, and `RemoveUser(index, true)` no longer changes anything.
+- `AddUser` now reverts when the amount is more than is left to allocate. It used to return false, so a script that ignored the result could think the entry was added.
 - `AddUser` refuses a zero address and a zero amount. The constructor refuses a zero token address.
 - Token transfers use `SafeERC20`, so tokens that do not return a value also work.
 - The older Truffle test and tracked build output were removed. Foundry is the supported test path.
